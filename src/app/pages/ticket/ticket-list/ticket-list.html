@@ -1,0 +1,32 @@
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Subject</th>
+      <th>Category</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Created by</th>
+      <th>Assigned to</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (t of items(); track t.ticketId) {
+      <tr>
+        <td>{{t.ticketNumber}} </td>
+        <td>{{ t.subject }} </td>
+        <td>{{ t.categoryName }} </td>
+        <td>{{ t.priorityName }} </td>
+        <td>{{ t.statusName }} </td>
+        <td>{{ t.createdByName }} </td>
+        <td>{{ t.assignedToName ?? '-' }} </td>
+        <td>{{ t.createdDate }} </td>
+      </tr>
+    } @empty {
+      <tr>
+        <td colspan="8">No tickets found.</td>
+      </tr>
+    }
+  </tbody>
+</table>

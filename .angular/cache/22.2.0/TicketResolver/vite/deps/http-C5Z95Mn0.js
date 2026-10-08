@@ -1,4 +1,4 @@
-import { Ac as Injector, Al as ɵɵdefineInjectable, Bt as computed, Cl as runInInjectionContext, Cr as TracingService, Ei as performanceMarkFeature, Fn as Injectable, Gl as operate, Jc as TransferState, Kc as RuntimeError, Kl as Observable, Lt as ResourceImpl, Ol as truncateMiddle, Pl as ɵɵinject, Pn as Inject, Rc as NgZone, Tl as signal, Uc as PendingTasks, Vl as map, Vt as encapsulateResourceError, Wi as setClassMetadata, Wl as createOperatorSubscriber, Wt as linkedSignal, Yl as observable, Yt as APP_BOOTSTRAP_LISTENER, Zl as reportUnhandledError, _c as DOCUMENT, _l as makeEnvironmentProviders, al as formatRuntimeError, ao as ɵɵdefineNgModule, au as __generator, cu as __values, dl as inject, dr as Service, el as assertInInjectionContext, eu as isFunction, hc as CSP_NONCE, iu as __awaiter, jl as ɵɵdefineInjector, kc as InjectionToken, nu as __asyncValues, qn as NgModule, qt as untracked, ru as __await, so as ɵɵdefineService, tn as ApplicationRef, tu as __asyncGenerator, vc as DestroyRef, vl as makeStateKey, xc as EnvironmentInjector } from "./core-BeetguT7.js";
+import { $l as reportUnhandledError, Ac as Injector, Al as ɵɵdefineInjectable, Bt as computed, Cl as runInInjectionContext, Cr as TracingService, Ei as performanceMarkFeature, Fn as Injectable, Jc as TransferState, Kc as RuntimeError, Kl as operate, Lt as ResourceImpl, Ol as truncateMiddle, Pl as ɵɵinject, Pn as Inject, Rc as NgZone, Tl as signal, Uc as PendingTasks, Vl as map, Vt as encapsulateResourceError, Wi as setClassMetadata, Wl as createOperatorSubscriber, Wt as linkedSignal, Xl as observable, Yt as APP_BOOTSTRAP_LISTENER, _c as DOCUMENT, _l as makeEnvironmentProviders, al as formatRuntimeError, ao as ɵɵdefineNgModule, au as __asyncValues, dl as inject, dr as Service, el as assertInInjectionContext, fu as __values, hc as CSP_NONCE, iu as __asyncGenerator, jl as ɵɵdefineInjector, kc as InjectionToken, lu as __generator, ou as __await, ql as Observable, qn as NgModule, qt as untracked, ru as isFunction, so as ɵɵdefineService, su as __awaiter, tn as ApplicationRef, vc as DestroyRef, vl as makeStateKey, xc as EnvironmentInjector } from "./core-jBE-p7u1.js";
 //#region node_modules/rxjs/dist/esm5/internal/util/isScheduler.js
 function isScheduler(value) {
 	return value && isFunction(value.schedule);
@@ -13,6 +13,9 @@ function popResultSelector(args) {
 }
 function popScheduler(args) {
 	return isScheduler(last(args)) ? args.pop() : void 0;
+}
+function popNumber(args, defaultValue) {
+	return typeof last(args) === "number" ? args.pop() : defaultValue;
 }
 //#endregion
 //#region node_modules/rxjs/dist/esm5/internal/util/isArrayLike.js
@@ -469,67 +472,6 @@ function switchMap(project, resultSelector) {
 	});
 }
 //#endregion
-//#region node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
-/**
-* @license Angular v22.2.0
-* (c) 2010-2026 Google LLC. https://angular.dev/
-* License: MIT
-*/
-function parseCookieValue(cookieStr, name) {
-	name = encodeURIComponent(name);
-	for (const cookie of cookieStr.split(";")) {
-		const eqIndex = cookie.indexOf("=");
-		const [cookieName, cookieValue] = eqIndex == -1 ? [cookie, ""] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)];
-		if (cookieName.trim() !== name) continue;
-		let value = cookieValue;
-		try {
-			value = decodeURIComponent(cookieValue);
-		} catch {}
-		if (value.length > 1 && value[0] === "\"" && value[value.length - 1] === "\"") value = value.slice(1, -1);
-		return value;
-	}
-	return null;
-}
-var BrowserXhr = class BrowserXhr {
-	build() {
-		return new XMLHttpRequest();
-	}
-	static ɵfac = function BrowserXhr_Factory(__ngFactoryType__) {
-		return new (__ngFactoryType__ || BrowserXhr)();
-	};
-	static ɵprov = /*@__PURE__*/ ɵɵdefineService({
-		token: BrowserXhr,
-		factory: BrowserXhr.ɵfac
-	});
-};
-(() => {
-	(typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BrowserXhr, [{ type: Service }], null, null);
-})();
-var XhrFactory = class XhrFactory {
-	static ɵfac = function XhrFactory_Factory(__ngFactoryType__) {
-		return new (__ngFactoryType__ || XhrFactory)();
-	};
-	static ɵprov = /*@__PURE__*/ ɵɵdefineInjectable({
-		token: XhrFactory,
-		factory: function XhrFactory_Factory(__ngFactoryType__) {
-			let __ngConditionalFactory__ = null;
-			if (__ngFactoryType__) __ngConditionalFactory__ = new (__ngFactoryType__ || XhrFactory)();
-			else __ngConditionalFactory__ = ɵɵinject(BrowserXhr);
-			return __ngConditionalFactory__;
-		},
-		providedIn: "root"
-	});
-};
-(() => {
-	(typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(XhrFactory, [{
-		type: Injectable,
-		args: [{
-			providedIn: "root",
-			useExisting: BrowserXhr
-		}]
-	}], null, null);
-})();
-//#endregion
 //#region node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
 * @license Angular v22.2.0
@@ -648,6 +590,67 @@ var BrowserPlatformLocation = class BrowserPlatformLocation extends PlatformLoca
 			useFactory: () => new BrowserPlatformLocation()
 		}]
 	}], () => [], null);
+})();
+//#endregion
+//#region node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+/**
+* @license Angular v22.2.0
+* (c) 2010-2026 Google LLC. https://angular.dev/
+* License: MIT
+*/
+function parseCookieValue(cookieStr, name) {
+	name = encodeURIComponent(name);
+	for (const cookie of cookieStr.split(";")) {
+		const eqIndex = cookie.indexOf("=");
+		const [cookieName, cookieValue] = eqIndex == -1 ? [cookie, ""] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)];
+		if (cookieName.trim() !== name) continue;
+		let value = cookieValue;
+		try {
+			value = decodeURIComponent(cookieValue);
+		} catch {}
+		if (value.length > 1 && value[0] === "\"" && value[value.length - 1] === "\"") value = value.slice(1, -1);
+		return value;
+	}
+	return null;
+}
+var BrowserXhr = class BrowserXhr {
+	build() {
+		return new XMLHttpRequest();
+	}
+	static ɵfac = function BrowserXhr_Factory(__ngFactoryType__) {
+		return new (__ngFactoryType__ || BrowserXhr)();
+	};
+	static ɵprov = /*@__PURE__*/ ɵɵdefineService({
+		token: BrowserXhr,
+		factory: BrowserXhr.ɵfac
+	});
+};
+(() => {
+	(typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BrowserXhr, [{ type: Service }], null, null);
+})();
+var XhrFactory = class XhrFactory {
+	static ɵfac = function XhrFactory_Factory(__ngFactoryType__) {
+		return new (__ngFactoryType__ || XhrFactory)();
+	};
+	static ɵprov = /*@__PURE__*/ ɵɵdefineInjectable({
+		token: XhrFactory,
+		factory: function XhrFactory_Factory(__ngFactoryType__) {
+			let __ngConditionalFactory__ = null;
+			if (__ngFactoryType__) __ngConditionalFactory__ = new (__ngFactoryType__ || XhrFactory)();
+			else __ngConditionalFactory__ = ɵɵinject(BrowserXhr);
+			return __ngConditionalFactory__;
+		},
+		providedIn: "root"
+	});
+};
+(() => {
+	(typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(XhrFactory, [{
+		type: Injectable,
+		args: [{
+			providedIn: "root",
+			useExisting: BrowserXhr
+		}]
+	}], null, null);
 })();
 //#endregion
 //#region node_modules/@angular/common/fesm2022/_module-chunk.mjs
@@ -2840,4 +2843,4 @@ var HttpResourceImpl = class extends ResourceImpl {
 	}
 };
 //#endregion
-export { of as $, JsonpClientBackend as A, withXhr as B, HttpRequest as C, HttpUrlEncodingCodec as D, HttpStatusCode as E, withInterceptors as F, getDOM as G, DomAdapter as H, withInterceptorsFromDi as I, switchMap as J, setRootDomAdapter as K, withJsonpSupport as L, REQUESTS_CONTRIBUTE_TO_STABILITY as M, provideHttpClient as N, HttpXhrBackend as O, withFetch as P, mergeMap as Q, withNoXsrfProtection as R, HttpParams as S, HttpResponseBase as T, LOCATION_INITIALIZED as U, withXsrfConfiguration as V, PlatformLocation as W, concatMap as X, finalize as Y, filter as Z, HttpFeatureKind as _, HTTP_FETCH_MAX_RESPONSE_SIZE as a, HttpHeaders as b, HttpBackend as c, HttpClientModule as d, from as et, HttpClientXsrfModule as f, HttpEventType as g, HttpErrorResponse as h, FetchBackend as i, popScheduler as it, JsonpInterceptor as j, HttpXsrfTokenExtractor as k, HttpClient as l, HttpContextToken as m, httpResource as n, innerFrom as nt, HTTP_INTERCEPTORS as o, HttpContext as p, parseCookieValue as q, withHttpTransferCache as r, popResultSelector as rt, HTTP_ROOT_INTERCEPTOR_FNS as s, HTTP_TRANSFER_CACHE_ORIGIN_MAP as t, executeSchedule as tt, HttpClientJsonpModule as u, HttpHandler as v, HttpResponse as w, HttpInterceptorHandler as x, HttpHeaderResponse as y, withRequestsMadeViaParent as z };
+export { of as $, JsonpClientBackend as A, withXhr as B, HttpRequest as C, HttpUrlEncodingCodec as D, HttpStatusCode as E, withInterceptors as F, PlatformLocation as G, parseCookieValue as H, withInterceptorsFromDi as I, switchMap as J, getDOM as K, withJsonpSupport as L, REQUESTS_CONTRIBUTE_TO_STABILITY as M, provideHttpClient as N, HttpXhrBackend as O, withFetch as P, mergeMap as Q, withNoXsrfProtection as R, HttpParams as S, HttpResponseBase as T, DomAdapter as U, withXsrfConfiguration as V, LOCATION_INITIALIZED as W, concatMap as X, finalize as Y, filter as Z, HttpFeatureKind as _, HTTP_FETCH_MAX_RESPONSE_SIZE as a, popScheduler as at, HttpHeaders as b, HttpBackend as c, HttpClientModule as d, from as et, HttpClientXsrfModule as f, HttpEventType as g, HttpErrorResponse as h, FetchBackend as i, popResultSelector as it, JsonpInterceptor as j, HttpXsrfTokenExtractor as k, HttpClient as l, HttpContextToken as m, httpResource as n, innerFrom as nt, HTTP_INTERCEPTORS as o, isScheduler as ot, HttpContext as p, setRootDomAdapter as q, withHttpTransferCache as r, popNumber as rt, HTTP_ROOT_INTERCEPTOR_FNS as s, HTTP_TRANSFER_CACHE_ORIGIN_MAP as t, executeSchedule as tt, HttpClientJsonpModule as u, HttpHandler as v, HttpResponse as w, HttpInterceptorHandler as x, HttpHeaderResponse as y, withRequestsMadeViaParent as z };

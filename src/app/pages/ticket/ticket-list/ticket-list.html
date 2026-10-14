@@ -1,3 +1,11 @@
+<app-filters
+  [categories]="categories()"
+  [priorities]="priorities()"
+  [statuses]="statuses()"
+  (search)="onCriteria($event)"
+  (clear)="onClear()"
+/>
+
 <table>
   <thead>
     <tr>

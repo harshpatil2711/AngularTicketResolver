@@ -13,7 +13,19 @@ describe('TicketList', () => {
       providers: [
         {
           provide: TicketService,
-          useValue: { list: () => of({ items: [], totalCount: 0, page: 1, size: 10, totalPages: 0 }) },
+          useValue: {
+            list: () =>
+              of({
+                items: [],
+                totalCount: 0,
+                page: 1,
+                size: 10,
+                totalPages: 0,
+                categories: [],
+                priorities: [],
+                statuses: [],
+              }),
+          },
         },
       ],
     }).compileComponents();

@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.filters-search {
+  flex: 1 1 18rem;
+}
+
+mat-form-field {
+  flex: 0 1 13rem;
+}
+
+.filters-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.filters-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}

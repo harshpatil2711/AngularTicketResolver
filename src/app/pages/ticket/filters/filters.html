@@ -1,0 +1,69 @@
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <form class="filters" (ngSubmit)="onSearch()">
+      <mat-form-field appearance="outline" class="filters-search">
+        <mat-label>Search</mat-label>
+        <input
+          matInput
+          name="searchTerm"
+          placeholder="Ticket number or subject"
+          [ngModel]="searchTerm()"
+          (ngModelChange)="searchTerm.set($event)"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select
+          name="category"
+          [ngModel]="categoryId()"
+          (ngModelChange)="categoryId.set($event)"
+        >
+          <mat-option [value]="null">All</mat-option>
+          @for (c of categories(); track c.categoryId) {
+            <mat-option [value]="c.categoryId">{{ c.categoryName }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Priority</mat-label>
+        <mat-select
+          name="priority"
+          [ngModel]="priorityId()"
+          (ngModelChange)="priorityId.set($event)"
+        >
+          <mat-option [value]="null">All</mat-option>
+          @for (p of priorities(); track p.priorityId) {
+            <mat-option [value]="p.priorityId">{{ p.priorityName }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select
+          name="status"
+          [ngModel]="statusId()"
+          (ngModelChange)="statusId.set($event)"
+        >
+          <mat-option [value]="null">All</mat-option>
+          @for (s of statuses(); track s.statusId) {
+            <mat-option [value]="s.statusId">{{ s.statusName }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <div class="filters-actions">
+        <button matButton="filled" type="submit">
+          <mat-icon>search</mat-icon>
+          Search
+        </button>
+        <button matButton="outlined" type="button" (click)="onClear()">
+          <mat-icon>clear</mat-icon>
+          Clear
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

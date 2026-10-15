@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.form-row mat-form-field {
+  flex: 1 1 12rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.form-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}

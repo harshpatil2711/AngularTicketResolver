@@ -1,0 +1,63 @@
+<form class="edit-form" (ngSubmit)="onSave()">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Subject</mat-label>
+    <input
+      matInput
+      name="subject"
+      placeholder="Ticket subject"
+      [ngModel]="subject()"
+      (ngModelChange)="subject.set($event)"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      name="description"
+      rows="5"
+      placeholder="Ticket description"
+      [ngModel]="description()"
+      (ngModelChange)="description.set($event)"
+    ></textarea>
+  </mat-form-field>
+
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Category</mat-label>
+      <mat-select
+        name="category"
+        [ngModel]="categoryId()"
+        (ngModelChange)="categoryId.set($event)"
+      >
+        @for (c of categories(); track c.categoryId) {
+          <mat-option [value]="c.categoryId">{{ c.categoryName }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select
+        name="priority"
+        [ngModel]="priorityId()"
+        (ngModelChange)="priorityId.set($event)"
+      >
+        @for (p of priorities(); track p.priorityId) {
+          <mat-option [value]="p.priorityId">{{ p.priorityName }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-actions">
+    <button matButton="outlined" type="button" (click)="onCancel()">
+      <mat-icon>close</mat-icon>
+      Cancel
+    </button>
+    <button matButton="filled" type="submit" [disabled]="!canSave()">
+      <mat-icon>save</mat-icon>
+      Save
+    </button>
+  </div>
+</form>

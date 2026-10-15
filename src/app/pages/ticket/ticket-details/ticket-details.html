@@ -1,0 +1,72 @@
+@if (loading()) {
+  <mat-progress-bar mode="indeterminate" />
+}
+
+<h2 mat-dialog-title>
+  <mat-icon inline>confirmation_number</mat-icon>
+  {{ detail()?.ticketNumber || 'Ticket details' }}
+</h2>
+
+<mat-divider />
+
+<mat-dialog-content>
+  @if (error(); as message) {
+    <p class="error">{{ message }}</p>
+  } @else if (loading()) {
+    <p>Loading...</p>
+  } @else if (detail(); as t) {
+    @if (editing()) {
+      <app-ticket-edit
+        [detail]="t"
+        [categories]="categories()"
+        [priorities]="priorities()"
+        (save)="onSave($event)"
+        (cancel)="onCancelEdit()"
+      />
+    } @else {
+      <dl class="details">
+        <dt>Subject</dt>
+        <dd>{{ t.subject }}</dd>
+
+        <dt>Description</dt>
+        <dd class="description">{{ t.description }}</dd>
+
+        <dt>Category</dt>
+        <dd>{{ t.categoryName }}</dd>
+
+        <dt>Priority</dt>
+        <dd>{{ t.priorityName }}</dd>
+
+        <dt>Status</dt>
+        <dd>{{ t.statusName }}</dd>
+
+        <dt>Created by</dt>
+        <dd>{{ t.createdByName }}</dd>
+
+        <dt>Assigned to</dt>
+        <dd>{{ t.assignedToName ?? '-' }}</dd>
+
+        <dt>Created</dt>
+        <dd>{{ t.createdDate }}</dd>
+
+        <dt>Resolved</dt>
+        <dd>{{ t.resolvedDate ?? '-' }}</dd>
+      </dl>
+    }
+  }
+</mat-dialog-content>
+
+<mat-divider />
+
+<mat-dialog-actions align="end">
+  @if (!editing()) {
+    <button matButton="outlined" (click)="onEdit()">
+      <mat-icon>edit</mat-icon>
+      Edit
+    </button>
+    <button matButton="filled" (click)="close()">
+      <mat-icon>close</mat-icon>
+      Close
+    </button>
+  }
+</mat-dialog-actions>

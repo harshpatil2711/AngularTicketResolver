@@ -1,11 +1,15 @@
 import { Ca as ɵɵclassProp, En as ElementRef, In as Input, O as booleanAttribute, Qo as ɵɵlistener, Rc as NgZone, Ul as Subject, Wi as setClassMetadata, ao as ɵɵdefineNgModule, dl as inject, go as ɵɵdomProperty, il as effect, io as ɵɵdefineDirective, ir as Renderer2, jl as ɵɵdefineInjector, kc as InjectionToken, la as ɵɵNgOnChangesFeature, ml as isSignal, qn as NgModule, ua as ɵɵProvidersFeature, wn as Directive, ya as ɵɵattribute } from "./core-jBE-p7u1.js";
-import { r as Platform } from "./_element-chunk-CN92PWBD.js";
-import { _ as FORM_FIELD, c as MatFormField, d as MatLabel, f as MatPrefix, l as MatFormFieldControl, p as MatSuffix, r as MAT_FORM_FIELD, s as MatError, t as MatFormFieldModule, u as MatHint, v as coerceBooleanProperty, y as _IdGenerator } from "./form-field-dx9epru6.js";
-import { n as getSupportedInputTypes } from "./_animation-chunk-BOAS9xUD.js";
-import "./common-6SXkiHOf.js";
-import { FormGroupDirective, NgControl, NgForm, Validators } from "./@angular_forms.js";
+import { t as Platform } from "./_platform-chunk-DJQVBBpH.js";
+import { t as _IdGenerator } from "./_id-generator-chunk-C2MSO5Vl.js";
+import "./_animation-chunk-Dq2GfyU1.js";
 import { t as BidiModule } from "./bidi-ChG4t4wj.js";
+import "./common-dmlDaUVO.js";
 import { AutofillMonitor, TextFieldModule } from "./@angular_cdk_text-field.js";
+import { FormGroupDirective, NgControl, NgForm, Validators } from "./@angular_forms.js";
+import "./a11y-CoB0dJo5.js";
+import { t as getSupportedInputTypes } from "./platform-CnUi4RSL.js";
+import { t as coerceBooleanProperty } from "./coercion-BM5FQA51.js";
+import { _ as FORM_FIELD, c as MatFormField, d as MatLabel, f as MatPrefix, l as MatFormFieldControl, p as MatSuffix, r as MAT_FORM_FIELD, s as MatError, t as MatFormFieldModule, u as MatHint } from "./form-field-BLfb3vLX.js";
 import { n as ErrorStateMatcher, t as _ErrorStateTracker } from "./_error-state-chunk-DWK9XeqO.js";
 //#region node_modules/@angular/material/fesm2022/_input-value-accessor-chunk.mjs
 var MAT_INPUT_VALUE_ACCESSOR = new InjectionToken("MAT_INPUT_VALUE_ACCESSOR");

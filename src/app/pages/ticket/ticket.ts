@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { TicketList } from './ticket-list/ticket-list';
+import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-ticket',
   standalone: true,
-  imports: [TicketList],
+  imports: [RouterOutlet],
 templateUrl: './ticket.html',
   styleUrl: './ticket.css'
 })

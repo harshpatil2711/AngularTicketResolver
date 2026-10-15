@@ -1,4 +1,4 @@
-export interface TicketListItem {
+﻿export interface TicketListItem {
   ticketId: number;
   ticketNumber: string;
   subject: string;
@@ -25,6 +25,46 @@ export interface TicketStatus {
   statusId: number;
   statusName: string;
   isTerminalState: boolean;
+}
+
+export interface TicketDetail {
+  ticketId: number;
+  ticketNumber: string;
+  subject: string;
+  description: string;
+  categoryId: number;
+  categoryName: string;
+  priorityId: number;
+  priorityName: string;
+  statusId: number;
+  statusName: string;
+  isTerminalState: boolean;
+  createdBy: number;
+  createdByName: string;
+  assignedTo: number | null;
+  assignedToName: string | null;
+  createdDate: string;
+  resolvedDate: string | null;
+}
+
+export interface TicketDetailResult {
+  ticket: TicketDetail;
+  categories: TicketCategory[];
+  priorities: TicketPriority[];
+}
+
+export interface TicketEditRequest {
+  ticketId: number;
+  subject: string;
+  description: string;
+  categoryId: number;
+  priorityId: number;
+  modifiedBy?: number | null;
+}
+
+export interface TicketUpdateResult {
+  affectedRows: number;
+  success: boolean;
 }
 
 export interface PagedResult<T> {

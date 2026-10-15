@@ -1,8 +1,13 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+﻿import { Component, inject, OnInit, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { PageEvent } from '@angular/material/paginator';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { Filters } from '../filters/filters';
-import { TicketService } from '../service/ticket.service';import {
+import { TicketDetails } from '../ticket-details/ticket-details';
+import { TicketService } from '../service/ticket.service';
+import {
   TicketCategory,
   TicketFilterCriteria,
   TicketListItem,
@@ -14,10 +19,11 @@ import { TicketService } from '../service/ticket.service';import {
   selector: 'app-ticket-list',
   styleUrl: './ticket-list.css',
   templateUrl: './ticket-list.html',
-  imports: [MatPaginatorModule, Filters]
+  imports: [MatPaginatorModule, MatButtonModule, MatIconModule, MatDialogModule, Filters]
 })
 export class TicketList implements OnInit {
   private readonly service = inject(TicketService);
+  private readonly dialog = inject(MatDialog);
   readonly items = signal<TicketListItem[]>([]);
   readonly total = signal(0);
   readonly pageSize = signal(10);
@@ -47,6 +53,26 @@ export class TicketList implements OnInit {
     this.criteria.set({});
     this.pageIndex.set(0);
     this.load();
+  }
+
+  openDetails(ticket: TicketListItem): void {
+    this.dialog
+      .open(TicketDetails, {
+        data: {
+          ticketId: ticket.ticketId,
+          categories: this.categories(),
+          priorities: this.priorities(),
+        },
+        width: '640px',
+        maxWidth: '95vw',
+        autoFocus: false,
+      })
+      .afterClosed()
+      .subscribe((saved) => {
+        if (saved) {
+          this.load();
+        }
+      });
   }
 
   private load(): void {
